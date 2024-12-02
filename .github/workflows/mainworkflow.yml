@@ -54,7 +54,7 @@ jobs:
 
       - name: test
         run: |
-          test
+          npx test ${{ matrix.project }}
 
       - name: build
         run: |
