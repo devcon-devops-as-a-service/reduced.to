@@ -19,6 +19,9 @@ jobs:
     outputs:
       services: ${{ steps.bumpServices.outputs.servicesToBuild }}
     steps:
+      - name: Install Azure CLI
+        run: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
       - name: Azure Login
         uses: Azure/login@v2
         with:
@@ -26,7 +29,6 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           auth-type: IDENTITY
-          enable-AzPSSession: true
 
       - name: Checkout
         uses: actions/checkout@v4.2.2
