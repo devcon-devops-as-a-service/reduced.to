@@ -4,7 +4,7 @@ author: 'Aharon Ohayon'
 
 inputs:
     stack:
-        descirption: 'The running stack of the caller repository. At the moment it can be node or csharp'
+        descirption: 'The running stack of the caller repository. At the moment it can be nx or csharp'
         required: true
 
 runs:

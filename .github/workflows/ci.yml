@@ -14,5 +14,5 @@ jobs:
     name: Release
     uses: ./.github/workflows/mainworkflow.yml
     with:
-      stack: 'node'
+      stack: 'nx'
       securityScan: true
