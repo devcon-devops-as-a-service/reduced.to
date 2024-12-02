@@ -2,7 +2,7 @@
 
 name: main workflow
 
-# Controls when the workflow will run 2
+# Controls when the workflow will run 3
 on:
   workflow_call:
     inputs:
