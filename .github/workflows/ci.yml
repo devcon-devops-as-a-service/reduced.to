@@ -11,3 +11,4 @@ jobs:
     uses: ./.github/workflows/bla.yml
     with:
       stack: 'node'
+      securityScan: true
