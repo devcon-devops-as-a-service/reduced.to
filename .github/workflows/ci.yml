@@ -8,6 +8,6 @@ on:
 jobs:
   buildDockerAndPush:
     name: Release
-    uses: github.com/devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml@main
+    uses: https://github.com/devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml@main
     with:
       stack: 'node'
