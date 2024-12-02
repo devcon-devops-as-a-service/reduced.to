@@ -8,6 +8,6 @@ on:
 jobs:
   buildDockerAndPush:
     name: Release
-    uses: devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml@main
+    uses: ./bla.yml@AddingCI
     with:
       stack: 'node'
