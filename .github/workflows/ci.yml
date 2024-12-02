@@ -12,7 +12,7 @@ permissions:
 jobs:
   buildDockerAndPush:
     name: Release
-    uses: ./.github/workflows/bla.yml
+    uses: ./.github/workflows/mainmworkflow.yml
     with:
       stack: 'node'
       securityScan: true

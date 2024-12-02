@@ -1,0 +1,79 @@
+# This is a basic workflow to help you get started with Actions
+
+name: main workflow
+
+# Controls when the workflow will run
+on:
+  workflow_call:
+    inputs:
+      stack:
+        required: true
+        type: string
+      securityScan:
+        required: true
+        type: boolean
+
+jobs:
+  preperation:
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.bumpServices.outputs.servicesToBuild }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Bump Services
+        id: bumpServices
+        uses: ../bumpServices
+        with:
+          stack: ${{ inputs.stack }}
+
+  build-test-push:
+    name: Build ${{ matrix.project }}
+    needs: preperation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.preperation.outputs.services) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Azure Login
+        uses: Azure/login@v2.2.0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: test
+        run: |
+          test
+
+      - name: build
+        run: |
+          docker build
+          az acr login --name myContainerRegistry
+
+      - name: push
+        run: docker push
+
+      - name: Run Microsoft Security DevOps
+        if: ${{ inputs.securityScan }}
+        uses: microsoft/security-devops-action@latest
+        id: msdo
+        with:
+          tools: trivy
+
+  argoupdate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: argocd cli installation
+        run: |
+          VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
+          curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
+          sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+          rm argocd-linux-amd64
+
+      - name: argo update
+        run: |
+          argocd app create ${{ inputs.appname }} --repo ${{ inputs.repourl }}  --path  --dest-server https://kubernetes.default.svc --dest-namespace
