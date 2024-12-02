@@ -19,9 +19,6 @@ jobs:
     outputs:
       services: ${{ steps.bumpServices.outputs.servicesToBuild }}
     steps:
-      - name: Install Azure CLI
-        run: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
       - name: Azure Login
         uses: Azure/login@v2
         with:
