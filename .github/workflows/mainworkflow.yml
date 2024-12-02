@@ -24,7 +24,7 @@ jobs:
 
       - name: Bump Services
         id: bumpServices
-        uses: ../bumpServices
+        uses: ./.github/bumpServices
         with:
           stack: ${{ inputs.stack }}
 
