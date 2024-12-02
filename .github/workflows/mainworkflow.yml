@@ -32,6 +32,9 @@ jobs:
         with:
           stack: ${{ inputs.stack }}
 
+      - name: Echo Services output
+        run: echo ${{ steps.bumpServices.outputs.servicesToBuild }}
+
   build-test-push:
     name: Build ${{ matrix.project }}
     needs: preperation
