@@ -25,21 +25,16 @@ const getBumpFactor = (): ReleaseType => {
 const getChangedProjects = async (): Promise<string> => {
     const stack = getInput('stack');
 
-    const possibleComamnds: Record<string, string[]> = {
-        nx: ['npm ci', 'npx nx show projects  --with-target docker-build --json'],
-        csharp: ['dotnet ...']
+    const possibleComamnds: Record<string, string> = {
+        nx: 'npx nx show projects  --with-target docker-build --json',
+        csharp: 'dotnet ...'
     };
 
     if (!possibleComamnds[stack]) {
         error(`Cannot get changed projects: stack ${stack} is not supported`);
     }
 
-    let lastRes: string;
-    for (const command of possibleComamnds[stack]) {
-        lastRes = await execAsync(command);
-    }
-
-    return lastRes;
+    return execAsync(possibleComamnds[stack]);
 };
 
 const main = async () => {

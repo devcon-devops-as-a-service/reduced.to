@@ -33391,17 +33391,13 @@ const getBumpFactor = () => {
 const getChangedProjects = async () => {
     const stack = (0, core_1.getInput)('stack');
     const possibleComamnds = {
-        nx: ['npm ci', 'npx nx show projects  --with-target docker-build --json'],
-        csharp: ['dotnet ...']
+        nx: 'npx nx show projects  --with-target docker-build --json',
+        csharp: 'dotnet ...'
     };
     if (!possibleComamnds[stack]) {
         (0, core_1.error)(`Cannot get changed projects: stack ${stack} is not supported`);
     }
-    let lastRes;
-    for (const command of possibleComamnds[stack]) {
-        lastRes = await (0, execAsync_1.execAsync)(command);
-    }
-    return lastRes;
+    return (0, execAsync_1.execAsync)(possibleComamnds[stack]);
 };
 const main = async () => {
     const inputProjectsText = await getChangedProjects();
