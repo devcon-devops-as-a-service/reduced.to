@@ -45,6 +45,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
+      - name: Install Npm packages
+        if: ${{ inputs.stack == 'nx' }}
+        run: npm ci
+
       - name: Azure Login
         uses: Azure/login@v2
         with:
