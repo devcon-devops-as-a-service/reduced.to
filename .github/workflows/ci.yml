@@ -1,31 +1,13 @@
-name: CI
+name: '[CI] Release version'
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - AddingCI
   workflow_dispatch:
 
-env:
-  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
-
 jobs:
-  main:
-    name: Continuous Integration (CI)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      actions: 'read'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: nrwl/nx-set-shas@v3
-        with:
-          main-branch-name: 'master'
-
-      - run: npm ci
-
-      - run: npx nx format:check
-      - run: npx nx affected -t lint,test,build --parallel=3
+  buildDockerAndPush:
+    name: Release
+    uses: devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml
+    with:
+      stack: 'node'
