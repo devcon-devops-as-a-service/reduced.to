@@ -8,6 +8,6 @@ on:
 jobs:
   buildDockerAndPush:
     name: Release
-    uses: ./bla.yml@AddingCI
+    uses: .github/workflows/bla.yml@AddingCI
     with:
       stack: 'node'
