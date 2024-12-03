@@ -1,7 +1,7 @@
 import { error, getInput, setOutput } from '@actions/core';
 import { inc, ReleaseType } from 'semver';
 import { context } from '@actions/github';
-import { execAsync } from './execAsync';
+import { execAsync } from '../utils';
 
 const bumps: Record<string, ReleaseType> = {
     fix: 'patch',
