@@ -65,7 +65,7 @@ jobs:
       - name: Push Docker Image to ACR
         run: |
           az acr login -n acrdeccondemo
-          docker push acrdeccondemo.azurecr.io/devcon/${{ matrix.project}}:${{ matrix.nextVersion }}
+          docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
 
       - name: Tag Service in git
         uses: ./.github/actions/bumpServices
