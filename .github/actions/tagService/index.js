@@ -26654,7 +26654,7 @@ const main = async () => {
         (0, core_1.error)('Cannot find input "version"');
         return;
     }
-    await (0, utils_1.execAsync)(`${service}@${version}`);
+    await (0, utils_1.execAsync)(`git push origin tag ${service}@${version}`);
     (0, core_1.info)(`Service ${service} was tagged successfully`);
 };
 main();
