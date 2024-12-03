@@ -18,6 +18,8 @@ const main = async () => {
         return;
     }
 
+    await execAsync(`git tag ${service}@${version}`);
+
     await execAsync(`git push origin tag ${service}@${version}`);
 
     info(`Service ${service} was tagged successfully`);
