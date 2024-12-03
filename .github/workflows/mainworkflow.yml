@@ -68,7 +68,7 @@ jobs:
           docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
 
       - name: Tag Service in git
-        uses: ./.github/actions/bumpServices
+        uses: ./.github/actions/tagService
         with:
           service: ${{ matrix.project }}
           version: ${{ matrix.nextVersion }}
