@@ -28,7 +28,7 @@ jobs:
 
       - name: Bump Services
         id: bumpServices
-        uses: ./.github/bumpServices
+        uses: ./.github/actions/bumpServices
         with:
           stack: ${{ inputs.stack }}
 
@@ -60,12 +60,18 @@ jobs:
           npx nx test ${{ matrix.project }}
 
       - name: Build Docker Image
-        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/devcon/${{ matrix.project}}:${{ matrix.nextVersion }}
+        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
 
       - name: Push Docker Image to ACR
         run: |
           az acr login -n acrdeccondemo
           docker push acrdeccondemo.azurecr.io/devcon/${{ matrix.project}}:${{ matrix.nextVersion }}
+
+      - name: Tag Service in git
+        uses: ./.github/actions/bumpServices
+        with:
+          service: ${{ matrix.project }}
+          version: ${{ matrix.nextVersion }}
 
       - name: Run Microsoft Security DevOps
         if: ${{ inputs.securityScan }}
