@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
   annotations:
     cert-manager.io/cluster-issuer: {{ required "TLS issuer has to be defined" .Values.tls.issuer }}
-    kubernetes.io/ingress.class: 'NginxIngressController'
+    #kubernetes.io/ingress.class: 'NginxIngressController'
   labels:
     app: reduced
 spec:
