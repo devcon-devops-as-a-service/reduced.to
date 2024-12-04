@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   preperation:
-    uses: devcon-devops-as-a-service/actions/.github/workflows/check.yml@main
+    uses: devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml@main
     with:
       stack: nx
       securityscan: true
