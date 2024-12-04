@@ -1,0 +1,15 @@
+# This is a basic workflow to help you get started with Actions
+
+name: main workflow
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write # This is required for actions/checkout
+
+jobs:
+  preperation:
+    uses: https://github.com/devcon-devops-as-a-service/actions/tree/main/.github/workflows/check.yml@main
