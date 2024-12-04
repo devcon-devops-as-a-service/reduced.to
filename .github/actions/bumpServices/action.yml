@@ -1,0 +1,12 @@
+name: 'Find and bump relevant Services'
+description: ''
+author: 'Aharon Ohayon'
+
+inputs:
+    stack:
+        descirption: 'The running stack of the caller repository. At the moment it can be nx or csharp'
+        required: true
+
+runs:
+    using: 'node20'
+    main: 'index.js'
