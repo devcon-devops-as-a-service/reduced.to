@@ -72,9 +72,9 @@ jobs:
       - name: Push Docker Image to ACR
         run: |
           az acr login -n acrdeccondemo
+          docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:1.1.0
           docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
-          docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:latest
-
+          
       - name: Tag Service in git
         uses: ./.github/actions/tagService
         with:
