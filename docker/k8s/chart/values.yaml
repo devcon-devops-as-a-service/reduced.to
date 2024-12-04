@@ -1,5 +1,6 @@
 # values.yaml
-
+image:
+  tag:
 namespace: reduced-to # Namespace for the application
 backend_port: &backend_port 3000 # Port for backend application
 frontend_port: &frontend_port 5000 # Port for frontend application
@@ -21,17 +22,17 @@ default_resources:
 
 backend:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/backend:1.0.0'
+  image: 'acrdeccondemo.azurecr.io/backend'
   port: *backend_port
 
 frontend:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/frontend:1.0.0'
+  image: 'acrdeccondemo.azurecr.io/frontend'
   port: *frontend_port
 
 tracker:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/tracker:1.0.0'
+  image: 'acrdeccondemo.azurecr.io/tracker'
   port: *tracker_port
 
 shared_configmap:
