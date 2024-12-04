@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: {{ required "Frontend port has to be defined" .Values.frontend.port }}
       targetPort: {{ required "Frontend port has to be defined" .Values.frontend.port }}
-  type: 'ClusterIP'
+  type: 'LoadBalancer'

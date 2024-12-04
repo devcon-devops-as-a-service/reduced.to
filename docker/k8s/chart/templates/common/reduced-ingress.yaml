@@ -9,7 +9,7 @@ metadata:
   labels:
     app: reduced
 spec:
-  ingressClassName: NginxIngressController
+  ingressClassName: nginx
   tls:
     - hosts:
         - {{ .Values.shared_configmap.DOMAIN }}
