@@ -21,17 +21,17 @@ default_resources:
 
 backend:
   replicas: 1
-  image: 'ghcr.io/origranot/reduced.to/backend:master'
+  image: 'acrdeccondemo.azurecr.io/backend'
   port: *backend_port
 
 frontend:
   replicas: 1
-  image: 'ghcr.io/origranot/reduced.to/frontend:master'
+  image: 'acrdeccondemo.azurecr.io/frontend'
   port: *frontend_port
 
 tracker:
   replicas: 1
-  image: 'ghcr.io/origranot/reduced.to/tracker:master'
+  image: 'acrdeccondemo.azurecr.io/tracker'
   port: *tracker_port
 
 shared_configmap:
