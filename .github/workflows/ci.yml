@@ -2,7 +2,7 @@ name: '[CI] Release version'
 on:
   push:
     branches:
-      - AddingCI
+      - master
   workflow_dispatch:
 
 permissions:
