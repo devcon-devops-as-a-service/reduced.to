@@ -5,7 +5,7 @@ name: main workflow
 permissions:
   contents: write
 
-# Controls when the workflow will run 8
+# Controls when the workflow will run
 on:
   workflow_call:
     inputs:
