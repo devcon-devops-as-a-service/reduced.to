@@ -21,17 +21,17 @@ default_resources:
 
 backend:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/backend'
+  image: 'acrdeccondemo.azurecr.io/backend:latest'
   port: *backend_port
 
 frontend:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/frontend'
+  image: 'acrdeccondemo.azurecr.io/frontend:latest'
   port: *frontend_port
 
 tracker:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/tracker'
+  image: 'acrdeccondemo.azurecr.io/tracker:latest'
   port: *tracker_port
 
 shared_configmap:
