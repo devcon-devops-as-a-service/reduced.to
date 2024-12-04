@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: tracker
-          image: {{ .Values.tracker.image }}
+          image: {{ .Values.tracker.image }}:{{ .Values.image.tag }}
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
