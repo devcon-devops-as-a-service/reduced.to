@@ -67,7 +67,7 @@ jobs:
           npx nx test ${{ matrix.project }}
 
       - name: Build Docker Image
-        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }} -t acrdeccondemo.azurecr.io/${{ matrix.project}}:1.1.0
+        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }} -t acrdeccondemo.azurecr.io/${{ matrix.project}}:2.0.0
 
       - name: Push Docker Image to ACR
         run: |
