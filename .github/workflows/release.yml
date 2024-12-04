@@ -16,3 +16,4 @@ jobs:
     with:
       stack: nx
       securityscan: true
+      appName: reduced
