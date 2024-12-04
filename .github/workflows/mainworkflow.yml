@@ -38,12 +38,16 @@ jobs:
   build-test-push:
     name: Build ${{ matrix.project }}
     needs: preperation
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJson(needs.preperation.outputs.services) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 1
 
       - name: Install Npm packages
         if: ${{ inputs.stack == 'nx' }}
@@ -60,12 +64,13 @@ jobs:
           npx nx test ${{ matrix.project }}
 
       - name: Build Docker Image
-        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
+        run: docker build -f apps/${{ matrix.project }}/Dockerfile . -t acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }} -t acrdeccondemo.azurecr.io/${{ matrix.project}}:latest
 
       - name: Push Docker Image to ACR
         run: |
           az acr login -n acrdeccondemo
           docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:${{ matrix.nextVersion }}
+          docker push acrdeccondemo.azurecr.io/${{ matrix.project}}:latest
 
       - name: Tag Service in git
         uses: ./.github/actions/tagService
