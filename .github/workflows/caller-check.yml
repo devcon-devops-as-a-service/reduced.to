@@ -12,4 +12,4 @@ permissions:
 
 jobs:
   preperation:
-    uses: devcon-devops-as-a-service/actions/tree/main/.github/workflows/check.yml@main
+    uses: devcon-devops-as-a-service/actions/.github/workflows/check.yml@main
