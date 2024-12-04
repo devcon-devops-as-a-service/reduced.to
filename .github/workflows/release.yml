@@ -13,6 +13,7 @@ permissions:
 jobs:
   preperation:
     uses: devcon-devops-as-a-service/actions/.github/workflows/mainworkflow.yml@main
+    secrets: inherit
     with:
       stack: nx
       securityscan: true
