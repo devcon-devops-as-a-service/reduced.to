@@ -1,6 +1,7 @@
 # values.yaml
 image:
-  tag:
+  tag: '1.0.0'
+
 namespace: reduced-to # Namespace for the application
 backend_port: &backend_port 3000 # Port for backend application
 frontend_port: &frontend_port 5000 # Port for frontend application
