@@ -26,12 +26,12 @@ backend:
 
 frontend:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/frontend:latest'
+  image: 'acrdeccondemo.azurecr.io/frontend:1.0.0'
   port: *frontend_port
 
 tracker:
   replicas: 1
-  image: 'acrdeccondemo.azurecr.io/tracker:latest'
+  image: 'acrdeccondemo.azurecr.io/tracker:1.0.0'
   port: *tracker_port
 
 shared_configmap:
